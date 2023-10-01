@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="src/bootstrap.min.css">
+  <script src="src/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="src/style.css">
+  <script src="src/main.js" defer></script>
+
+  <style>
+    :is(#pt,#totalTable) :is(th,td) {
+      font-size: 10px;
+      padding: 1px 6px;
+    }
+
+    #pt :is(th,td) {
+      border: 1px solid rgb(155, 165, 175);
+    }
+
+    :has(#PATswitch:not(:checked)) ~ * .docPicture,
+    :has(#PATswitch:checked) ~ * .docTextArea {
+      display: block !important;
+    }
+
+    [data-bet_type="normal"] ~ .normal,
+    [data-bet_type="doubleTN"] ~ .doubleTN,
+    [data-bet_type="threeTN"] ~ .threeTN,
+    [data-bet_type="specialN"] ~ .specialN {
+      display: inline-block !important;
+    }
+
+    :has([data-bet_type="normal"]) ~ .normal,
+    :has([data-bet_type="doubleTN"]) ~ .doubleTN,
+    :has([data-bet_type="threeTN"]) ~ .threeTN,
+    :has([data-bet_type="specialN"]) ~ .specialN {
+      display: flex !important;
+    }
+
+    :has([name='gameType'][value='1']:checked) {
+      & label:has([name='gameType'][value='1']) {
+        color: rgb(233, 106, 0);
+        box-shadow: 0 8px 0 rgb(253, 126, 20);
+      }
+      & ~ * {
+        & .gameSelectColor, 
+        & .gameSelectColor:is(:hover, :active, :focus) {
+          background-color: rgb(253, 126, 20) !important;
+        }
+      }
+    }
+
+    :has([name='gameType'][value='2']:checked) {
+      & label:has([name='gameType'][value='2']) {
+        color: rgb(37, 78, 144);
+        box-shadow: 0 8px 0 rgb(57, 98, 164);
+      }
+      & ~ * {
+        & .gameSelectColor,
+        & .gameSelectColor:is(:hover, :active, :focus) {
+          background-color: rgb(57, 98, 164) !important;
+        }
+      }
+    }
+
+    :has([name='gameType'][value='3']:checked) {
+      & label:has([name='gameType'][value='3']) {
+        color: rgb(215, 48, 65);
+        box-shadow: 0 8px 0 rgb(235, 68, 85);
+      }
+      & ~ * {
+        & .gameSelectColor, 
+        & .gameSelectColor:is(:hover, :active, :focus) {
+          background-color: rgb(235, 68, 85) !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- header -->
+  <div class="container-fluid fixed-top px-5" id="header">
+    <div class="hstack gap-5 h-100">
+      <!-- 歷史紀錄 -->
+      <input type="date" name="" id="" class="concaveShadow">
+      <!-- 歷史紀錄 -->
+      <!-- 首頁 -->
+      <div class="nav gap-3 align-items-center mx-5">
+        <a href="Index.html" class="nav-link fw-bold fs-5 text-white active" data-link="eo">前台</a>
+        <a href="co/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="co">主控</a>
+        <a href="so/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="so">出單</a>
+      </div>
+      <!-- 首頁 -->
+      <!-- 前台分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="eo" hidden>
+        <!-- 單據統計 dialog -->
+        <button class="nav-link text-white" data-dialog-open="#ls">單據統計</button>
+        <dialog id="ls">
+          <div class="vstack gap-4">
+            <div class="hstack justify-content-between">
+              <div class="title">單據統計</div>
+              <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#ls"></button>
+            </div>
+            <!-- 客戶入單統計 -->
+            <div class="overflow-auto" style="width: 1200px; height: 340px;">
+              <table class="w-100 text-nowrap">
+                <thead class="thBg thBorder position-sticky top-0">
+                  <tr>
+                    <th>編號</th>
+                    <th>名稱</th>
+                    <th>單據張數</th>
+                    <th>金額合計</th>
+                    <th>空白單據</th>
+                    <th>全車數量</th>
+                    <th>二星數量</th>
+                    <th>三星數量</th>
+                    <th>四星數量</th>
+                    <th>台號數量</th>
+                    <th>特尾數量</th>
+                    <th>天一數量</th>
+                    <th>天二數量</th>
+                    <th>天三數量</th>
+                    <th>全車小計</th>
+                    <th>二星小計</th>
+                    <th>三星小計</th>
+                    <th>四星小計</th>
+                    <th>台號小計</th>
+                    <th>特尾小計</th>
+                    <th>天一小計</th>
+                    <th>天二小計</th>
+                    <th>天三小計</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>阿德</td>
+                    <td>100</td>
+                    <td>1000000000</td>
+                    <td>1,2,3,4,5,6,7,8,9,10</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- 客戶入單統計 -->
+            <!-- 單據列表 -->
+            <div class="overflow-auto" style="width: 1200px; height: 340px;">
+              <table class="w-100 text-nowrap">
+                <thead class="thBg thBorder position-sticky top-0">
+                  <tr>
+                    <th>單號</th>
+                    <th>金額合計</th>
+                    <th>全車數量</th>
+                    <th>二星數量</th>
+                    <th>三星數量</th>
+                    <th>四星數量</th>
+                    <th>台號數量</th>
+                    <th>特尾數量</th>
+                    <th>天一數量</th>
+                    <th>天二數量</th>
+                    <th>天三數量</th>
+                    <th>全車小計</th>
+                    <th>二星小計</th>
+                    <th>三星小計</th>
+                    <th>四星小計</th>
+                    <th>台號小計</th>
+                    <th>特尾小計</th>
+                    <th>天一小計</th>
+                    <th>天二小計</th>
+                    <th>天三小計</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>1000000000</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>10000.00</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                    <td>100000000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- 單據列表 -->
+          </div>
+        </dialog>
+        <!-- 單據統計 dialog -->
+      </div>
+      <!-- 前台分頁 -->
+      <!-- 主控分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="co" hidden>
+        <a href="SystemSetting.html" class="nav-link text-white">系統設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">人員</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ClientsData.html">客戶資料</a></li>
+            <li><a class="dropdown-item" href="OutsourcedClients.html">外調組頭</a></li>
+          </ul>
+        </div>
+        <a href="ReduceMultipleSettings.html" class="nav-link text-white">降倍設定</a>
+        <a href="ReservedQuantitySetting.html" class="nav-link text-white">自留設定</a>
+        <a href="DoubleTailNumberSetting.html" class="nav-link text-white">台號設定</a>
+        <a href="ThreeTailNumberSetting.html" class="nav-link text-white">特尾設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">入牌查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="NumberSearch.html">牌支搜尋</a></li>
+            <li><a class="dropdown-item" href="BanNumberSetting.html">禁牌設定</a></li>
+          </ul>
+        </div>
+        <a href="MultipleNumbers.html" class="nav-link text-white">組合包牌</a>
+        <a href="LotteryResult.html" class="nav-link text-white">開獎結果</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SingleAccount.html">單期帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 主控分頁 -->
+      <!-- 出單分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="so" hidden>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">資料設定</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SystemSetting.html">系統參數設定</a></li>
+            <li><a class="dropdown-item" href="WebsiteSetting.html">網站資料設定</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">網站查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ReduceMultipleSearch.html">漲價降倍查詢</a></li>
+            <li><a class="dropdown-item" href="OpeningTimeSearch.html">開盤時間查詢</a></li>
+            <li><a class="dropdown-item" href="BasicPriceSearch.html">基本價格設定</a></li>
+            <li><a class="dropdown-item" href="PriceIncreaseSearch.html">各站漲價統計</a></li>
+            <li><a class="dropdown-item" href="BettingDetailsSearch.html">查詢撤銷注單</a></li>
+            <li><a class="dropdown-item" href="CurrentAccountSearch.html">本日帳務查詢</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">101遊戲切換</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">全部切換今彩539</a></li>
+            <li><a class="dropdown-item" href="">全部切換大樂透</a></li>
+            <li><a class="dropdown-item" href="">全部切換六合彩</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">已出注單</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="AllOrderDetails.html">全部出單明細</a></li>
+            <li><a class="dropdown-item" href="ManualOutsourcing.html">手動外調切出</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="HistoricalAccount.html">歷史帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 出單分頁 -->
+      <div class="nav align-items-center ms-auto">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input concaveShadow" type="checkbox" role="button" id="">
+          <label class="form-check-label fw-bold tx-16" for="" role="button"></label>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-bell-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">############</a></li>
+            <li><a class="dropdown-item" href="">############</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-gear-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">個人資料</a></li>
+            <li><a class="dropdown-item" href="">員工資料</a></li>
+            <li><a class="dropdown-item" href="">操作說明</a></li>
+            <li><a class="dropdown-item" href="">相關網站</a></li>
+            <li><a class="dropdown-item" href="">登出</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header -->
+  <!-- main -->
+  <div class="container-fluid py-4" id="main">
+    <div class="d-flex">
+      <div class="mx-auto pe-3">
+        <div class="d-flex gap-5 justify-content-center align-items-start">
+          <!-- 聊天區 -->
+          <div class="bgMain mainShadow p-3">
+            <div class="d-flex gap-3" style="height: 805px;">
+              <div class="vstack gap-2 h-100">
+                <!-- 搜尋排序 -->
+                <div class="hstack gap-3">
+                  <input type="search" name="" id="" class="concaveShadow" size="17" placeholder="搜尋">
+                  <div>
+                    <button class="btn btnGray convexShadow dropdown-toggle" type="button" data-bs-toggle="dropdown">排序</button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">收到時間</a></li>
+                      <li><a class="dropdown-item" href="#">未讀訊息</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- 搜尋排序 -->
+                <!-- 聊天列表 -->
+                <div class="list-group list-group-flush overflow-auto">
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                  <button class="list-group-item">
+                    <div class="hstack gap-3">
+                      <img src="" alt="" class="personalPhoto">
+                      <div class="vstack align-items-start" style="width: 120px;">
+                        <div class="fw-bold text-truncate">539-08-阿德</div>
+                        <div class="small opacity-75 text-truncate">阿德向您傳送了圖片</div>
+                      </div>
+                      <div class="vstack align-items-end">
+                        <div class="small opacity-75">下午4:00</div>
+                        <span class="badge rounded-pill bgBlue">99+</span>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <!-- 聊天列表 -->
+              </div>
+              <!-- 聊天室 -->
+              <div class="vstack gap-2 h-100" style="width: 280px;">
+                <div class="fw-bold tx-16 hstack p-1">539-08-阿德</div>
+                <!-- 聊天訊息 -->
+                <div class="vstack gap-4 py-2 overflow-auto">
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 own">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <img src="" alt="" class="personalPhoto">
+                    <div class="vstack gap-1">
+                      <div class="small mb-1">阿德</div>
+                      <div class="d-flex gap-2">
+                        <div class="chatMessage">13165165151651656516649684644156</div>
+                        <div class="small opacity-75 align-self-end">
+                          已讀1<br>
+                          下午4:00
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 聊天訊息 -->
+                <textarea name="" id="" cols="30" rows="10" placeholder="輸入訊息..."></textarea>
+              </div>
+              <!-- 聊天室 -->
+            </div>
+          </div>
+          <!-- 聊天區 -->
+          <!-- 圖片區 -->
+          <div class="vstack gap-4 flex-grow-0">
+            <!-- 圖片功能列按鈕 -->
+            <div class="hstack gap-4">
+              <div class="form-check form-switch hstack justify-content-center gap-3">
+                <input class="form-check-input concaveShadow" type="checkbox" role="button" id="PATswitch">
+                <label class="form-check-label fw-bold tx-16" for="PATswitch" role="button">圖片</label>
+              </div>
+              <!-- 新增 / 調閱圖片 dialog -->
+              <button class="btn btnBlue convexShadow ms-auto" data-dialog-open="#queryPicture">新增 / 調閱</button>
+              <dialog id="queryPicture">
+                <div class="vstack gap-4">
+                  <div class="hstack justify-content-between">
+                    <div class="title">新增 / 調閱圖片</div>
+                    <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#queryPicture"></button>
+                  </div>
+                  <div class="hstack gap-3 mb-2">
+                    <label class="tab" role="button"><input type="radio" name="pictureGameType" value="1" id="" hidden checked>539</label>
+                    <label class="tab" role="button"><input type="radio" name="pictureGameType" value="2" id="" hidden>大樂透</label>
+                    <label class="tab" role="button"><input type="radio" name="pictureGameType" value="3" id="" hidden>六合彩</label>
+                  </div>
+                  <div class="hstack gap-3">
+                    <div class="inputGroup">
+                      <div class="inputGroupText convexShadow">客戶編號</div>
+                      <input type="search" name="" id="" list="cn" class="concaveShadow" size="10">
+                      <datalist id="cn">
+                        <option value="001-阿德"></option>
+                        <option value="002-阿德"></option>
+                        <option value="003-阿德"></option>
+                        <option value="004-阿德"></option>
+                        <option value="005-阿德"></option>
+                        <option value="006-阿德"></option>
+                      </datalist>
+                    </div>
+                    <div class="inputGroup">
+                      <div class="inputGroupText convexShadow">單據編號</div>
+                      <input type="number" name="" id="" class="concaveShadow" style="width: 75px;">
+                    </div>
+                  </div>
+                  <div class="btn-group convexShadow align-self-end col-4">
+                    <button class="btn btnBlue">新增</button>
+                    <button class="btn btnBlue">調閱</button>
+                  </div>
+                </div>
+              </dialog>
+              <!-- 新增 / 調閱圖片 dialog -->
+              <div class="btn-group convexShadow">
+                <button class="btn btnBlue">儲存</button>
+                <button class="btn btnGray">放棄</button>
+                <button class="btn btnRed">刪除</button>
+              </div>
+            </div>
+            <!-- 圖片功能列按鈕 -->
+            <!-- 圖片編輯 -->
+            <div class="shadow">
+              <!-- 單據 -->
+              <div class="bg-white py-3" style="width: 460px; height: 715px;">
+                <div class="vstack gap-2 align-items-center px-4 border-bottom borderColor mb-2">
+                  <div class="hstack justify-content-between mb-2">
+                    <div class="fs-3 fw-bold">33 - 7</div>
+                    <div class="fs-5 fw-bold">539</div>
+                    <div>2023-06-09</div>
+                  </div>
+                  <table class="text-nowrap text-center tableNoHoverBg mb-3" id="pt">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>全車</th>
+                        <th>二星</th>
+                        <th>三星</th>
+                        <th>四星</th>
+                        <th>台號</th>
+                        <th>特尾</th>
+                        <th>天一</th>
+                        <th>天二</th>
+                        <th>天三</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>給</th>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <img src="..." alt="" class="docPicture d-none">
+                <textarea name="" cols="56" rows="25" class="docTextArea p-3 d-none"></textarea>
+              </div>
+              <!-- 單據 -->
+              <div class="bg-white shadow-lg w-100 hstack justify-content-center" style="height: 65px;"><hr class="w-100 mx-3">工具列<hr class="w-100 mx-3"></div>
+            </div>
+            <!-- 圖片編輯 -->
+          </div>
+          <!-- 圖片區 -->
+          <!-- 打單區 -->
+          <div class="vstack gap-4 flex-grow-0">
+            <!-- 號碼輸入表單 -->
+            <div class="bgMain mainShadow p-3" style="height: 300px;">
+              <div class="vstack gap-3 align-items-start">
+                <!-- 遊戲切換 -->
+                <div class="hstack justify-content-between mb-3">
+                  <div class="hstack gap-3">
+                    <label class="tab" role="button"><input type="radio" name="gameType" value="1" id="" hidden checked>539</label>
+                    <label class="tab" role="button"><input type="radio" name="gameType" value="2" id="" hidden>大樂透</label>
+                    <label class="tab" role="button"><input type="radio" name="gameType" value="3" id="" hidden>六合彩</label>
+                  </div>
+                  <div class="btn-group convexShadow">
+                    <button class="btn btnBlue">儲存單據</button>
+                    <button class="btn btnGray">放棄儲存</button>
+                  </div>
+                </div>
+                <!-- 遊戲切換 -->
+                <!-- 調閱單據 -->
+                <div class="hstack gap-4">
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow">客戶編號</div>
+                    <input type="search" name="" id="" list="cn" class="concaveShadow" size="10">
+                    <datalist id="cn">
+                      <option value="001-阿德"></option>
+                      <option value="002-阿德"></option>
+                      <option value="003-阿德"></option>
+                      <option value="004-阿德"></option>
+                      <option value="005-阿德"></option>
+                      <option value="006-阿德"></option>
+                    </datalist>
+                  </div>
+                  <div class="fw-bold tx-16" style="min-width: 110px;">單據編號：05</div>
+                  <div class="btn-group convexShadow">
+                    <button class="btn btnBlue gameSelectColor">新增</button>
+                    <button class="btn btnBlue gameSelectColor" data-dialog-open="#querylist">調閱</button>
+                    <!-- 調閱單據 dialog -->
+                    <dialog id="querylist">
+                      <div class="vstack gap-4">
+                        <div class="hstack justify-content-between">
+                          <div class="title">調閱單據</div>
+                          <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#querylist"></button>
+                        </div>
+                        <div class="hstack gap-3">
+                          <div class="inputGroup">
+                            <div class="inputGroupText convexShadow">單據編號</div>
+                            <input type="number" class="concaveShadow" style="width: 100px;">
+                          </div>
+                          <button class="btn btnBlue convexShadow">調閱</button>
+                        </div>
+                      </div>
+                    </dialog>
+                    <!-- 調閱單據 dialog -->
+                  </div>
+                  <label class="align-bottom fw-bold" role="button">
+                    <input type="checkbox" name="" id="" class="concaveShadow align-middle me-2">同步圖片與打單
+                  </label>
+                </div>
+                <!-- 調閱單據 -->
+                <!-- 號碼輸入 -->
+                <div class="inputGroup w-100">
+                  <!-- 模式切換 -->
+                  <button class="btn btnBlue convexShadow dropdown-toggle gameSelectColor" type="button" data-bs-toggle="dropdown" style="width: 86px;" data-bet_type="normal">下注</button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-bet_type_select="normal">下注</a></li>
+                    <li><a class="dropdown-item" href="#" data-bet_type_select="doubleTN">台號</a></li>
+                    <li><a class="dropdown-item" href="#" data-bet_type_select="threeTN">特尾</a></li>
+                    <li><a class="dropdown-item" href="#" data-bet_type_select="specialN">天碰</a></li>
+                  </ul>
+                  <!-- 模式切換 -->
+
+                  <!-- 下注模式號碼輸入 -->
+                  <input type="text" class="concaveShadow flex-grow-1 normal" hidden>
+                  <!-- 下注模式號碼輸入 -->
+                  <!-- 台號模式號碼輸入 -->
+                  <input type="text" class="concaveShadow flex-grow-1 doubleTN" hidden>
+                  <!-- 台號模式號碼輸入 -->
+                  <!-- 特尾模式號碼輸入 -->
+                  <input type="text" class="concaveShadow flex-grow-1 threeTN" hidden>
+                  <!-- 特尾模式號碼輸入 -->
+                  <!-- 天碰模式號碼輸入 -->
+                  <input type="text" class="concaveShadow flex-grow-1 specialN" hidden>
+                  <!-- 天碰模式號碼輸入 -->
+                </div>
+                <!-- 號碼輸入 -->
+
+                <!-- ******支數輸入****** -->
+                <!-- 下注模式支數 -->
+                <div class="hstack gap-3 normal" hidden>
+                  <div class="inputGroup">
+                    <!-- 二星全車切換 -->
+                    <button class="btn btnBlue convexShadow dropdown-toggle gameSelectColor" type="button" data-bs-toggle="dropdown" style="width: 86px;" data-combination_type>二星</button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" data-combination_type_select>二星</a></li>
+                      <li><a class="dropdown-item" href="#" data-combination_type_select>全車</a></li>
+                    </ul>
+                    <!-- 二星全車切換 -->
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow">三星</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow">四星</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <label class="align-bottom" role="button"><input type="checkbox" name="" class="concaveShadow align-middle me-2" role="button">鎖定</label>
+                </div>
+                <!-- 下注模式支數 -->
+                <!-- 台號模式支數 -->
+                <div class="hstack gap-3 doubleTN" hidden>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow justify-content-center" style="width: 86px;">小支</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <label class="align-bottom" role="button"><input type="checkbox" name="" class="concaveShadow align-middle me-2" role="button">鎖定</label>
+                </div>
+                <!-- 台號模式支數 -->
+                <!-- 特尾模式支數 -->
+                <div class="hstack gap-3 threeTN" hidden>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow justify-content-center" style="width: 86px;">特尾</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <label class="align-bottom" role="button"><input type="checkbox" name="" class="concaveShadow align-middle me-2" role="button">鎖定</label>
+                </div>
+                <!-- 特尾模式支數 -->
+                <!-- 天碰模式支數 -->
+                <div class="hstack gap-3 specialN" hidden>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow justify-content-center" style="width: 86px;">天一</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow">天二</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <div class="inputGroup">
+                    <div class="inputGroupText convexShadow">天三</div>
+                    <input type="text" class="concaveShadow" size="5">
+                  </div>
+                  <label class="align-bottom" role="button"><input type="checkbox" name="" class="concaveShadow align-middle me-2" role="button">鎖定</label>
+                </div>
+                <!-- 天碰模式支數 -->
+                <!-- ******支數輸入****** -->
+
+                <!-- ******號碼按鈕****** -->
+                <!-- 下注模式按鈕 -->
+                <div class="vstack gap-3 align-items-start normal" hidden>
+                  <div class="hstack gap-3">
+                    <button class="btn btnBlue convexShadow col-2 gameSelectColor">新增資料</button>
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">0頭</button>
+                      <button class="btn btnGray">1頭</button>
+                      <button class="btn btnGray">2頭</button>
+                      <button class="btn btnGray">3頭</button>
+                      <button class="btn btnGray">4頭</button>
+                    </div>
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">雙生</button>
+                      <button class="btn btnGray">單號</button>
+                      <button class="btn btnGray">雙號</button>
+                      <button class="btn btnGray">全部號碼</button>
+                    </div>
+                  </div>
+                  <div class="hstack gap-3">
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">0尾</button>
+                      <button class="btn btnGray">1尾</button>
+                      <button class="btn btnGray">2尾</button>
+                      <button class="btn btnGray">3尾</button>
+                      <button class="btn btnGray">4尾</button>
+                      <button class="btn btnGray">5尾</button>
+                      <button class="btn btnGray">6尾</button>
+                      <button class="btn btnGray">7尾</button>
+                      <button class="btn btnGray">8尾</button>
+                      <button class="btn btnGray">9尾</button>
+                    </div>
+                    <button class="btn btnGray convexShadow">號碼不出牌</button>
+                  </div>
+                </div>
+                <!-- 下注模式按鈕 -->
+                <!-- 台號模式按鈕 -->
+                <div class="hstack gap-3 doubleTN" hidden>
+                  <button class="btn btnBlue convexShadow col-2 gameSelectColor">新增資料</button>
+                  <div class="btn-group convexShadow">
+                    <button class="btn btnGray">雙生</button>
+                    <button class="btn btnGray">一線</button>
+                    <button class="btn btnGray">二線</button>
+                    <button class="btn btnGray">三線</button>
+                    <button class="btn btnGray">四線</button>
+                    <button class="btn btnGray">五線</button>
+                    <button class="btn btnGray">六線</button>
+                    <button class="btn btnGray">七線</button>
+                    <button class="btn btnGray">八線</button>
+                    <button class="btn btnGray">九線</button>
+                  </div>
+                </div>
+                <!-- 台號模式按鈕 -->
+                <!-- 特尾模式按鈕 -->
+                <div class="hstack gap-3 threeTN" hidden>
+                  <button class="btn btnBlue convexShadow col-2 gameSelectColor">新增資料</button>
+                  <div class="btn-group convexShadow">
+                    <button class="btn btnGray">正反轉</button>
+                    <button class="btn btnGray">包頭數</button>
+                    <button class="btn btnGray">包尾數</button>
+                    <button class="btn btnGray">包中數</button>
+                    <button class="btn btnGray">包頭尾</button>
+                  </div>
+                </div>
+                <!-- 特尾模式按鈕 -->
+                <!-- 天碰模式按鈕 -->
+                <div class="vstack gap-3 align-items-start specialN" hidden>
+                  <div class="hstack gap-3">
+                    <button class="btn btnBlue convexShadow col-2 gameSelectColor">新增資料</button>
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">0頭</button>
+                      <button class="btn btnGray">1頭</button>
+                      <button class="btn btnGray">2頭</button>
+                      <button class="btn btnGray">3頭</button>
+                      <button class="btn btnGray">4頭</button>
+                    </div>
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">雙生</button>
+                      <button class="btn btnGray">單號</button>
+                      <button class="btn btnGray">雙號</button>
+                      <button class="btn btnGray">全部號碼</button>
+                    </div>
+                  </div>
+                  <div class="hstack gap-3">
+                    <div class="btn-group convexShadow">
+                      <button class="btn btnGray">0尾</button>
+                      <button class="btn btnGray">1尾</button>
+                      <button class="btn btnGray">2尾</button>
+                      <button class="btn btnGray">3尾</button>
+                      <button class="btn btnGray">4尾</button>
+                      <button class="btn btnGray">5尾</button>
+                      <button class="btn btnGray">6尾</button>
+                      <button class="btn btnGray">7尾</button>
+                      <button class="btn btnGray">8尾</button>
+                      <button class="btn btnGray">9尾</button>
+                    </div>
+                    <button class="btn btnGray convexShadow">號碼不出牌</button>
+                  </div>
+                </div>
+                <!-- 天碰模式按鈕 -->
+                <!-- ******號碼按鈕****** -->
+              </div>
+            </div>
+            <!-- 號碼輸入表單區 -->
+            <!-- 明細資料表區 -->
+            <div class="bgMain mainShadow p-3">
+              <div class="vstack gap-3">
+                <!-- 功能按鈕 -->
+                <div class="hstack gap-3">
+                  <div class="btn-group convexShadow">
+                    <button class="btn btnRed">單筆刪除</button>
+                    <button class="btn btnRed">全部刪除</button>
+                  </div>
+                  <div class="btn-group convexShadow">
+                    <!-- 常用資料 dialog -->
+                    <button class="btn btnBlue" data-dialog-open="#fud">常用資料</button>
+                    <dialog id="fud">
+                      <div class="vstack gap-4">
+                        <div class="hstack justify-content-between">
+                          <div class="title">常用資料</div>
+                          <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#fud"></button>
+                        </div>
+                        <div class="hstack gap-3">
+                          <div class="inputGroup">
+                            <div class="inputGroupText convexShadow">編號</div>
+                            <input type="text" class="concaveShadow" size="5">
+                          </div>
+                          <div class="inputGroup">
+                            <div class="inputGroupText convexShadow">備註</div>
+                            <input type="text" class="concaveShadow" size="15">
+                          </div>
+                          <button class="btn btnBlue convexShadow">新增資料</button>
+                        </div>
+                        <!-- 常用資料列表 -->
+                        <div class="overflow-auto" style="width: 500px; height: 500px;">
+                          <table class="w-100 text-nowrap">
+                            <thead class="thBg thBorder position-sticky top-0">
+                              <tr>
+                                <th width="100">編號</th>
+                                <th>備註</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                              <tr>
+                                <td>001</td>
+                                <td>自用1</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- 常用資料列表 -->
+                        <div class="btn-group convexShadow align-self-end">
+                          <button class="btn btnBlue">載入資料</button>
+                          <button class="btn btnRed">刪除資料</button>
+                        </div>
+                      </div>
+                    </dialog>
+                    <!-- 常用資料 dialog -->
+                    <!-- 調整單據成數 dialog -->
+                    <button class="btn btnBlue" data-dialog-open="#adjustPercentage">調整單據成數</button>
+                    <dialog id="adjustPercentage">
+                      <div class="vstack gap-4">
+                        <div class="hstack justify-content-between">
+                          <div class="title">調整單據成數</div>
+                          <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#adjustPercentage"></button>
+                        </div>
+                        <div class="vstack gap-3">
+                          <div>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">全部</label>
+                          </div>
+                          <div class="hstack gap-4">
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">全車</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">台號</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">特尾</label>
+                          </div>
+                          <div class="hstack gap-4">
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">二星</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">三星</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">四星</label>
+                          </div>
+                          <div class="hstack gap-4">
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">天一</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">天二</label>
+                            <label class="align-bottom" role="button"><input type="checkbox" class="concaveShadow align-middle me-2">天三</label>
+                          </div>
+                        </div>
+                        <div class="hstack gap-3">
+                          <div class="inputGroup">
+                            <div class="inputGroupText convexShaodw">調整成數(%)</div>
+                            <input type="number" class="concaveShadow" style="width: 75px;">
+                          </div>
+                          <button class="btn btnBlue convexShadow">確定轉換</button>
+                        </div>
+                      </div>
+                    </dialog>
+                    <!-- 調整單據成數 dialog -->
+                  </div>
+                  <!-- 匯出 dialog -->
+                  <button class="btn btnBlue convexShadow" data-dialog-open="#sendOut">匯出</button>
+                  <dialog id="sendOut">
+                    <div class="vstack gap-4">
+                      <div class="hstack justify-content-between">
+                        <div class="title">匯出資料</div>
+                        <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#sendOut"></button>
+                      </div>
+                      <div class="fw-bold text-danger">確定要將 "單據資料" 匯出到 "出單" 嗎?</div>
+                      <button class="btn btnBlue convexShadow align-self-end">確定匯出</button>
+                    </div>
+                  </dialog>
+                  <!-- 匯出 dialog -->
+                </div>
+                <!-- 功能按鈕 -->
+                <!-- 明細表 -->
+                <div class="overflow-auto" style="max-width: 700px; height: 365px;">
+                  <table class="w-100 text-nowrap">
+                    <thead class="thBg thBorder position-sticky top-0">
+                      <tr>
+                        <th>No.</th>
+                        <th>類別</th>
+                        <th>明細</th>
+                        <th>支數</th>
+                        <th>組合數</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>連碰</td>
+                        <td>
+                          <div class="text-truncate"
+                          style="max-width: 270px;"
+                          data-bs-toggle="tooltip"
+                          data-bs-custom-class="tooltip"
+                          data-bs-title="01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25">
+                            01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.24.25
+                          </div>
+                        </td>
+                        <td>二X1,三X1,四X1</td>
+                        <td>二X10000,三X10000,四X10000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- 明細表 -->
+                <!-- 總計表 -->
+                <table class="w-100 text-nowrap text-end tableNoHoverBg" id="totalTable">
+                  <thead>
+                    <tr>
+                      <th width="40">類別</th>
+                      <th>車</th>
+                      <th>二</th>
+                      <th>三</th>
+                      <th>四</th>
+                      <th>台</th>
+                      <th>特</th>
+                      <th>天一</th>
+                      <th>天二</th>
+                      <th>天三</th>
+                      <th width="100">總計</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>支數</th>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td>0.00</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>＄</th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 總計表 -->
+              </div>
+            </div>
+            <!-- 明細資料表區 -->
+          </div>
+          <!-- 打單區 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main -->
+</body>
+<script>
+  // 圖片編輯 圖文轉換
+  let PATswitch = document.querySelector('#PATswitch');
+  let PATswitch_label = document.querySelector('label[for="PATswitch"]');
+  PATswitch.addEventListener('change', () => {
+    if (PATswitch.checked) PATswitch_label.textContent = '文字';
+    else PATswitch_label.textContent = '圖片';
+  })
+  // 圖片編輯 圖文轉換
+
+  // 下注模式轉換
+  let bet_type = document.querySelector('[data-bet_type]');
+  const bet_type_select = document.querySelectorAll('[data-bet_type_select]');
+  bet_type_select.forEach( i => {
+    i.addEventListener('click', () => {
+      bet_type.textContent = i.textContent;
+      bet_type.dataset.bet_type = i.dataset.bet_type_select;
+    })
+  })
+  // 下注模式轉換
+
+  // 全車二星轉換
+  let combination_type = document.querySelector('[data-combination_type]');
+  const combination_type_select = document.querySelectorAll('[data-combination_type_select]');
+  combination_type_select.forEach( i => i.addEventListener('click', () => combination_type.textContent = i.textContent))
+  // 全車二星轉換
+</script>
+</html>

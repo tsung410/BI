@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  color: rgb(80, 80, 80);
+  font-size: 14px;
+  font-family: 'Noto Sans TC', sans-serif;
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(180deg, transparent, rgb(215, 215, 215), transparent);
+  }
+}
+
+body {
+  background-color: rgb(235, 240, 245);
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(165, 165, 165);
+    background-image: none;
+  }
+}
+
+
+
+/* -----------------header----------------- */
+#header {
+  height: 55px;
+  background-color: #126e51;
+}
+
+.nav-link.active {
+  box-shadow: 0 7px 0 rgb(135 176 250);
+}
+
+:has(.active[data-link='eo']) ~ [data-link='eo'],
+:has(.active[data-link='co']) ~ [data-link='co'],
+:has(.active[data-link='so']) ~ [data-link='so'] {
+  display: flex !important;
+}
+
+.bi-bell-fill, .bi-gear-fill {
+  fill: white;
+}
+/* -----------------header----------------- */
+
+
+
+#main {
+  margin-top: 55px;
+}
+
+:is(.d-flex, .hstack) > * {
+  white-space: nowrap;
+}
+
+input {
+  &:not([type='checkbox'], [type='radio']) {
+    padding: 5px 10px;
+    border: 0;
+    outline: 0;
+  }
+
+  &[type='checkbox'] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 0;
+
+    &:checked {
+      appearance: auto;
+      box-shadow: none;
+    }
+  }
+
+  &:disabled {
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+textarea {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  resize: none;
+}
+
+
+
+/* -----------------table----------------- */
+tbody > tr:hover {
+  & * {
+    background-color: #618acc;
+    color: white !important;
+  }
+
+  & .convexShadow {
+    box-shadow: none;
+  }
+}
+
+.tableNoHoverBg tbody > tr:hover * {
+  background-color: inherit;
+  color: inherit !important;
+}
+
+th, td {
+  padding: 6px 10px;
+}
+
+.tableSm :is(th, td) {
+  font-size: 12px;
+  padding: 3px 5px;
+}
+
+.thBg {
+  background-image: linear-gradient(to bottom,rgba(255,255,255,0.3),rgb(255,255,255) 30%);
+  backdrop-filter: blur(30px);
+}
+
+.tfBg {
+  background-color: white;
+}
+
+.thBorder, .tfBorder {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.thBorder::before {
+  border-bottom: 1px solid rgb(155, 165, 175);
+}
+
+.tfBorder::before {
+  border-top: 1px solid rgb(155, 165, 175);
+}
+
+.tbBgGreen {
+  background-color: rgb(225, 245, 225);
+}
+
+.isolation {
+  isolation: isolate;
+}
+/* -----------------table----------------- */
+
+
+
+.tx-10 {
+  font-size: 10px;
+}
+
+.tx-16 {
+  font-size: 16px !important;
+}
+
+.bgMain {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.bgGray {
+  background-color: rgb(155, 165, 175) !important;
+}
+
+.bgBlue {
+  background-color: rgb(57, 98, 164) !important;
+}
+
+.bgRed {
+  background-color: rgb(255, 85, 90) !important;
+}
+
+.borderColor {
+  border-color: rgb(155, 165, 175) !important;
+}
+
+
+
+/* -----------------聊天區樣式----------------- */
+.list-group-item {
+  background-color: transparent;
+  border: 0;
+
+  &:hover {
+    background-color: #618acc;
+
+    & * {
+      color: white;
+    }
+  }
+}
+
+.personalPhoto {
+  width: 35px;
+  height: 35px;
+  background-color: gray;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.chatMessage {
+  max-width: 170px;
+  padding: 3px 6px;
+  background-color: rgb(235, 240, 245);
+  border-radius: 5px;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.own {
+  flex-direction: row-reverse;
+
+  & .personalPhoto {
+    display: none;
+  }
+
+  & .vstack {
+    align-items: end;
+
+    & .d-flex {
+      flex-direction: row-reverse;
+      text-align: end;
+    }
+
+    & .chatMessage {
+      background-color: rgb(197, 238, 255);
+    }
+  }
+}
+/* -----------------聊天區樣式----------------- */
+
+
+
+.inputGroup {
+  display: flex;
+  align-items: stretch;
+}
+
+.inputGroupText {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(125, 135, 145);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  color: white;
+  letter-spacing: 2px;
+  text-indent: 2px;
+}
+
+
+
+/* -----------------陰影特效----------------- */
+.mainShadow {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1),
+  -10px -10px 15px rgb(255, 255, 255),
+  inset 10px 10px 15px rgba(0, 0, 0, 0.1),
+  inset -10px -10px 15px rgb(255, 255, 255);
+}
+
+.convexShadow {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+  -5px -5px 10px rgb(255, 255, 255);
+}
+
+.concaveShadow {
+  background-color: rgb(245, 250, 255);
+  box-shadow: 5px 5px 10px rgba(125, 135, 145, 0.1),
+  inset 5px 5px 10px rgba(125, 135, 145, 0.3),
+  inset -5px -5px 10px rgb(255, 255, 255);
+}
+/* -----------------陰影特效----------------- */
+
+
+
+/* -----------------按鈕----------------- */
+.btn {
+  letter-spacing: 2px;
+  text-indent: 2px;
+}
+
+.btnBlue, .btnGray, .btnRed, :is(.btnBlue,.btnGray.btnRed):is(:hover,:focus,:active) {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  color: white !important;
+  border: 0;
+  border-radius: 0;
+}
+
+.btnBlue, .btnBlue:is(:hover,:focus,:active) {
+  background-color: rgb(57, 98, 164) !important;
+}
+
+.btnGray, .btnGray:is(:hover,:focus,:active) {
+  background-color: rgb(125, 135, 145) !important;
+}
+
+.btnRed, .btnRed:is(:hover,:focus,:active) {
+  background-color: rgb(235, 68, 85) !important;
+}
+
+:is(.btnBlue,.btnGray,.btnRed):hover {
+  opacity: 0.8;
+}
+
+:is(.btnBlue,.btnGray,.btnRed):is(:focus, :active) {
+  opacity: 0.6;
+}
+/* -----------------按鈕----------------- */
+
+
+
+.tooltip {
+  --bs-tooltip-bg: rgb(75, 75, 85);
+}
+
+.title {
+  margin-left: 20px;
+  padding: 5px 15px;
+  color: rgb(37, 78, 144);
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-indent: 5px;
+  box-shadow: -18px 0 0 rgb(57, 98, 164);
+}
+
+.form-select {
+  border: 0;
+  border-radius: 0;
+  width: auto;
+}
+
+.form-switch .form-check-input {
+  appearance: none !important;
+  width: 42px;
+  height: 22px;
+
+  &:checked {
+    background-color: rgb(57, 98, 164);
+  }
+}
+
+.finish {
+  width: 7px;
+  height: 7px;
+  margin: 0 auto;
+  background-color: rgb(13, 202, 240) !important;
+  border-radius: 100%;
+  box-shadow: 0 0 10px rgb(13, 202, 240) !important;
+}
+
+.tab {
+  padding: 4px;
+  color: rgb(155, 165, 175);
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-indent: 5px;
+  z-index: 1;
+
+  &:has(input[type='radio']:checked) {
+    color: rgb(37, 78, 144);
+    box-shadow: 0 8px 0 rgb(57, 98, 164);
+  }
+}
+
+.tabCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  padding: 5px 10px;
+  border-radius: 100%;
+  color: rgb(105, 115, 125);
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-indent: 3px;
+  box-shadow: 5px 5px 10px rgb(135, 145, 155),
+  -5px -5px 10px rgb(175, 185, 195),
+  inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+  inset -10px -10px 15px rgb(255, 255, 255);
+  cursor: pointer;
+  opacity: 0.7;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 100%;
+    box-shadow: 5px 5px 10px rgb(175, 185, 195);
+  }
+
+  &:has(input[type='radio']:checked) {
+    background-color: rgb(195, 215, 235);
+    color: rgb(37, 78, 144);
+    box-shadow: 10px 10px 15px rgb(97, 138, 204),
+    -5px -5px 10px rgba(97, 138, 204, 0.7),
+    inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+    inset -10px -10px 15px rgb(255, 255, 255);
+    opacity: 1;
+  }
+}
+
+.docPicture {
+  display: block;
+  max-width: 460px;
+  max-height: 573px;
+  margin: auto;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.docTextArea {
+  display: block;
+  margin: auto;
+  border: 1px solid rgb(155, 165, 175);
+}
+
+/* ----------------- dialog ----------------- */
+dialog {
+  position: relative;
+  background: linear-gradient(60deg, rgba(255, 255, 255, 0.85) 60%, rgba(255, 255, 255, 0.9) 60%);
+  border: 0;
+  outline: 0;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  overflow: hidden;
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+
+  &::backdrop {
+    backdrop-filter: brightness(80%) blur(1px);
+  }
+}
+/* ----------------- dialog ----------------- */

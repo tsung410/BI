@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../src/bootstrap.min.css">
+  <script src="../src/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="../src/style.css">
+
+  <style>
+    div:has(input[name='DTNumber'][value='setting']:checked) ~ #DTNLeaflet,
+    div:has(input[name='DTNumber'][value='leaflet']:checked) ~ #DTNSetting {
+      display: none !important;
+    }
+
+    #DTNSettingTable tr {
+      display: inline-block;
+      padding: 0 8px;
+    }
+
+    #DTNSettingTable tr + tr {
+      border-left: 1px solid rgb(155, 165, 175);
+    }
+
+    #DTNSettingTable :is(th,td) {
+      display: block;
+    }
+
+    #DTNTable tr:nth-of-type(odd) {
+      background-color: rgb(225, 235, 255);
+    }
+
+    div:has(input[name='check1']:checked) ~ .bg-white div #check1,
+    div:has(input[name='check2']:checked) ~ .bg-white div #check2,
+    div:has(input[name='check3']:checked) ~ .bg-white div #check3 {
+      display: block !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- header -->
+  <div class="container-fluid fixed-top px-5" id="header">
+    <div class="hstack gap-5 h-100">
+      <!-- 歷史紀錄 -->
+      <input type="date" name="" id="" class="concaveShadow">
+      <!-- 歷史紀錄 -->
+      <!-- 首頁 -->
+      <div class="nav gap-3 align-items-center mx-5">
+        <a href="../Index.html" class="nav-link fw-bold fs-5 text-white" data-link="eo">前台</a>
+        <a href="Home.html" class="nav-link fw-bold fs-5 text-white active" data-link="co">主控</a>
+        <a href="../so/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="so">出單</a>
+      </div>
+      <!-- 首頁 -->
+      <!-- 前台分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="eo" hidden>
+        <button class="nav-link text-white">單據統計</button>
+      </div>
+      <!-- 前台分頁 -->
+      <!-- 主控分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="co" hidden>
+        <a href="SystemSetting.html" class="nav-link text-white">系統設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">人員</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ClientsData.html">客戶資料</a></li>
+            <li><a class="dropdown-item" href="OutsourcedClients.html">外調組頭</a></li>
+          </ul>
+        </div>
+        <a href="ReduceMultipleSettings.html" class="nav-link text-white">降倍設定</a>
+        <a href="ReservedQuantitySetting.html" class="nav-link text-white">自留設定</a>
+        <a href="DoubleTailNumberSetting.html" class="nav-link text-white">台號設定</a>
+        <a href="ThreeTailNumberSetting.html" class="nav-link text-white">特尾設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">入牌查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="NumberSearch.html">牌支搜尋</a></li>
+            <li><a class="dropdown-item" href="BanNumberSetting.html">禁牌設定</a></li>
+          </ul>
+        </div>
+        <a href="MultipleNumbers.html" class="nav-link text-white">組合包牌</a>
+        <a href="LotteryResult.html" class="nav-link text-white">開獎結果</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SingleAccount.html">單期帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 主控分頁 -->
+      <!-- 出單分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="so" hidden>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">資料設定</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SystemSetting.html">系統參數設定</a></li>
+            <li><a class="dropdown-item" href="WebsiteSetting.html">網站資料設定</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">網站查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ReduceMultipleSearch.html">漲價降倍查詢</a></li>
+            <li><a class="dropdown-item" href="OpeningTimeSearch.html">開盤時間查詢</a></li>
+            <li><a class="dropdown-item" href="BasicPriceSearch.html">基本價格設定</a></li>
+            <li><a class="dropdown-item" href="PriceIncreaseSearch.html">各站漲價統計</a></li>
+            <li><a class="dropdown-item" href="BettingDetailsSearch.html">查詢撤銷注單</a></li>
+            <li><a class="dropdown-item" href="CurrentAccountSearch.html">本日帳務查詢</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">101遊戲切換</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">全部切換今彩539</a></li>
+            <li><a class="dropdown-item" href="">全部切換大樂透</a></li>
+            <li><a class="dropdown-item" href="">全部切換六合彩</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">已出注單</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="AllOrderDetails.html">全部出單明細</a></li>
+            <li><a class="dropdown-item" href="ManualOutsourcing.html">手動外調切出</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="HistoricalAccount.html">歷史帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 出單分頁 -->
+      <div class="nav align-items-center ms-auto">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input concaveShadow" type="checkbox" role="button" id="">
+          <label class="form-check-label fw-bold tx-16" for="" role="button"></label>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-bell-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">############</a></li>
+            <li><a class="dropdown-item" href="">############</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-gear-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">個人資料</a></li>
+            <li><a class="dropdown-item" href="">員工資料</a></li>
+            <li><a class="dropdown-item" href="">操作說明</a></li>
+            <li><a class="dropdown-item" href="">相關網站</a></li>
+            <li><a class="dropdown-item" href="">登出</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header -->
+  <!-- main -->
+  <div class="container-fluid py-4" id="main">
+    <div class="d-flex">
+      <div class="mx-auto pe-3">
+        <div class="hstack gap-5 pb-3 mb-4" style="width: 1350px;">
+          <!-- tab -->
+          <div class="hstack gap-3">
+            <label class="tab" role="button"><input type="radio" name="DTNumber" value="setting" id="" hidden checked>台號倍數設定</label>
+            <label class="tab" role="button"><input type="radio" name="DTNumber" value="leaflet" id="" hidden>台號倍數表</label>
+          </div>
+          <!-- tab -->
+          <div class="vr my-2"></div>
+          <!-- 遊戲切換 -->
+          <div class="hstack gap-3">
+            <label class="tab" role="button"><input type="radio" name="gameType" value="" id="" hidden checked>539</label>
+            <label class="tab" role="button"><input type="radio" name="gameType" value="" id="" hidden>大樂透</label>
+            <label class="tab" role="button"><input type="radio" name="gameType" value="" id="" hidden>六合彩</label>
+          </div>
+          <!-- 遊戲切換 -->
+        </div>
+        <!-- tab > 台號設定 -->
+        <div class="vstack gap-3" id="DTNSetting">
+          <!-- 全部倍數設定 -->
+          <div class="hstack gap-3">
+            <div class="inputGroup">
+              <div class="inputGroupText convexShadow">台號倍數分組</div>
+              <select name="" id="" class="form-select concaveShadow" role="button">
+                <option value="">第1組</option>
+                <option value="">第2組</option>
+                <option value="">第3組</option>
+                <option value="">第4組</option>
+                <option value="">第5組</option>
+                <option value="">第6組</option>
+                <option value="">第7組</option>
+                <option value="">第8組</option>
+                <option value="">第9組</option>
+                <option value="">第10組</option>
+              </select>
+            </div>
+            <div class="inputGroup">
+              <div class="inputGroupText convexShadow">幾線</div>
+              <select name="" id="" class="form-select concaveShadow" role="button">
+                <option value="">一線</option>
+                <option value="">二線</option>
+                <option value="">三線</option>
+                <option value="">四線</option>
+                <option value="">五線</option>
+                <option value="">六線</option>
+                <option value="">七線</option>
+                <option value="">八線</option>
+                <option value="">九線</option>
+                <option value="">十線</option>
+              </select>
+            </div>
+            <div class="inputGroup">
+              <div class="inputGroupText convexShadow">倍數</div>
+              <input type="text" class="concaveShadow" size="5">
+              <button class="btn btnBlue convexShadow">確定</button>
+            </div>
+            <button class="btn btnBlue convexShadow col-1 ms-4">儲存資料</button>
+          </div>
+          <!-- 全部倍數設定 -->
+          <!-- 倍數設定 -->
+          <div class="bgMain mainShadow p-3">
+            <table class="w-100 text-nowrap text-center fw-bold tableNoHoverBg" id="DTNSettingTable">
+              <tbody>
+                <tr>
+                  <th>一線</th>
+                  <td>01<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>12<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>23<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>34<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>45<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>56<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>67<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>78<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>89<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>90<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>二線</th>
+                  <td>02<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>13<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>24<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>35<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>46<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>57<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>68<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>79<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>80<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>91<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>三線</th>
+                  <td>03<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>14<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>25<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>36<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>47<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>58<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>69<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>70<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>81<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>92<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>四線</th>
+                  <td>04<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>15<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>26<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>37<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>48<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>59<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>60<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>71<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>82<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>93<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>五線</th>
+                  <td>05<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>16<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>27<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>38<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>49<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>50<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>61<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>72<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>83<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>94<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>六線</th>
+                  <td>06<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>17<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>28<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>39<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>40<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>51<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>62<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>73<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>84<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>95<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>七線</th>
+                  <td>07<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>18<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>29<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>30<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>41<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>52<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>63<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>74<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>85<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>96<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>八線</th>
+                  <td>08<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>19<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>20<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>31<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>42<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>53<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>64<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>75<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>86<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>97<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>九線</th>
+                  <td>09<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>10<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>21<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>32<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>43<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>54<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>65<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>76<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>87<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>98<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+                <tr>
+                  <th>十線</th>
+                  <td>00<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>11<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>22<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>33<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>44<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>55<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>66<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>77<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>88<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                  <td>99<input type="text" class="concaveShadow ms-3" style="width: 60px;"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- 倍數設定 -->
+        </div>
+        <!-- tab > 台號設定 -->
+        <!-- tab > 台號倍數表 -->
+        <div class="d-flex gap-5 justify-content-start align-items-start" id="DTNLeaflet">
+          <!-- 查詢選項 -->
+          <div class="vstack gap-3 flex-grow-0">
+            <div class="hstack gap-3 mb-3">
+              <div class="inputGroup">
+                <div class="inputGroupText convexShadow">台號倍數分組</div>
+                <select name="" id="" class="form-select concaveShadow" role="button">
+                  <option value="">第1組</option>
+                  <option value="">第2組</option>
+                  <option value="">第3組</option>
+                  <option value="">第4組</option>
+                  <option value="">第5組</option>
+                  <option value="">第6組</option>
+                  <option value="">第7組</option>
+                  <option value="">第8組</option>
+                  <option value="">第9組</option>
+                  <option value="">第10組</option>
+                </select>
+              </div>
+              <button class="btn btnBlue convexShadow w-100">查詢</button>
+            </div>
+            <label class="align-bottom" role="button"><input type="checkbox" name="check1" class="concaveShadow align-middle me-2" role="button">若同期開兩支，以該號倍數乘二再減一倍計算</label>
+            <label class="align-bottom" role="button"><input type="checkbox" name="check2" class="concaveShadow align-middle me-2" role="button">同一號中獎次數上限為兩次</label>
+            <label class="align-bottom" role="button"><input type="checkbox" name="check3" class="concaveShadow align-middle me-2" role="button">（ 十線 ）中獎以一次為限</label>
+          </div>
+          <!-- 查詢選項 -->
+          <!-- 倍數表 -->
+          <div class="bg-white shadow p-4">
+            <div class="vstack gap-3">
+              <div class="fs-5 fw-bold align-self-center">539台號倍數</div>
+              <table class="w-100 text-nowrap tableNoHoverBg" id="DTNTable">
+                <tbody>
+                  <tr>
+                    <th>一線</th>
+                    <th>01</th>
+                    <th>12</th>
+                    <th>23</th>
+                    <th>34</th>
+                    <th>45</th>
+                    <th>56</th>
+                    <th>67</th>
+                    <th>78</th>
+                    <th>89</th>
+                    <th>90</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>13</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>9.6</td>
+                    <td>13</td>
+                  </tr>
+                  <tr>
+                    <th>二線</th>
+                    <th>02</th>
+                    <th>13</th>
+                    <th>24</th>
+                    <th>35</th>
+                    <th>46</th>
+                    <th>57</th>
+                    <th>68</th>
+                    <th>79</th>
+                    <th>80</th>
+                    <th>91</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>14.5</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>10.6</td>
+                    <td>14.5</td>
+                    <td>14.5</td>
+                  </tr>
+                  <tr>
+                    <th>三線</th>
+                    <th>03</th>
+                    <th>14</th>
+                    <th>25</th>
+                    <th>36</th>
+                    <th>47</th>
+                    <th>58</th>
+                    <th>69</th>
+                    <th>70</th>
+                    <th>81</th>
+                    <th>92</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>16.5</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>16.5</td>
+                    <td>16.5</td>
+                    <td>16.5</td>
+                  </tr>
+                  <tr>
+                    <th>四線</th>
+                    <th>04</th>
+                    <th>15</th>
+                    <th>26</th>
+                    <th>37</th>
+                    <th>48</th>
+                    <th>59</th>
+                    <th>60</th>
+                    <th>71</th>
+                    <th>82</th>
+                    <th>93</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>18</td>
+                    <td>13</td>
+                    <td>13</td>
+                    <td>13</td>
+                    <td>13</td>
+                    <td>13</td>
+                    <td>18</td>
+                    <td>18</td>
+                    <td>18</td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <th>五線</th>
+                    <th>05</th>
+                    <th>16</th>
+                    <th>27</th>
+                    <th>38</th>
+                    <th>49</th>
+                    <th>50</th>
+                    <th>61</th>
+                    <th>72</th>
+                    <th>83</th>
+                    <th>94</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>20</td>
+                    <td>14.5</td>
+                    <td>14.5</td>
+                    <td>14.5</td>
+                    <td>14.5</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <th>六線</th>
+                    <th>06</th>
+                    <th>17</th>
+                    <th>28</th>
+                    <th>39</th>
+                    <th>40</th>
+                    <th>51</th>
+                    <th>62</th>
+                    <th>73</th>
+                    <th>84</th>
+                    <th>95</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>22</td>
+                    <td>16</td>
+                    <td>16</td>
+                    <td>16</td>
+                    <td>22</td>
+                    <td>22</td>
+                    <td>22</td>
+                    <td>22</td>
+                    <td>22</td>
+                    <td>22</td>
+                  </tr>
+                  <tr>
+                    <th>七線</th>
+                    <th>07</th>
+                    <th>18</th>
+                    <th>29</th>
+                    <th>30</th>
+                    <th>41</th>
+                    <th>52</th>
+                    <th>63</th>
+                    <th>74</th>
+                    <th>85</th>
+                    <th>96</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>24.5</td>
+                    <td>18</td>
+                    <td>18</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                    <td>24.5</td>
+                  </tr>
+                  <tr>
+                    <th>八線</th>
+                    <th>08</th>
+                    <th>19</th>
+                    <th>20</th>
+                    <th>31</th>
+                    <th>42</th>
+                    <th>53</th>
+                    <th>64</th>
+                    <th>75</th>
+                    <th>86</th>
+                    <th>97</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>27</td>
+                    <td>20</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                    <td>27</td>
+                  </tr>
+                  <tr>
+                    <th>九線</th>
+                    <th>09</th>
+                    <th>10</th>
+                    <th>21</th>
+                    <th>32</th>
+                    <th>43</th>
+                    <th>54</th>
+                    <th>65</th>
+                    <th>76</th>
+                    <th>87</th>
+                    <th>98</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                  </tr>
+                  <tr>
+                    <th>十線</th>
+                    <th>00</th>
+                    <th>11</th>
+                    <th>22</th>
+                    <th>33</th>
+                    <th>44</th>
+                    <th>55</th>
+                    <th>66</th>
+                    <th>77</th>
+                    <th>88</th>
+                    <th>99</th>
+                  </tr>
+                  <tr>
+                    <th>倍數</th>
+                    <td>48</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                    <td>33.5</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="align-self-center" id="check1" hidden>若同期開兩支，以該號倍數乘二再減一倍計算</div>
+              <div class="align-self-center" id="check2" hidden>同一號中獎次數上限為兩次</div>
+              <div class="align-self-center" id="check3" hidden>（ 十線 ）中獎以一次為限</div>
+            </div>
+          </div>
+          <!-- 倍數表 -->
+        </div>
+        <!-- tab > 台號倍數表 -->
+      </div>
+    </div>
+  </div>
+  <!-- main -->
+</body>
+</html>

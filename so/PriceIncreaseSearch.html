@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../src/bootstrap.min.css">
+  <script src="../src/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="../src/style.css">
+</head>
+<body>
+  <!-- header -->
+  <div class="container-fluid fixed-top px-5" id="header">
+    <div class="hstack gap-5 h-100">
+      <!-- 歷史紀錄 -->
+      <input type="date" name="" id="" class="concaveShadow">
+      <!-- 歷史紀錄 -->
+      <!-- 首頁 -->
+      <div class="nav gap-3 align-items-center mx-5">
+        <a href="../Index.html" class="nav-link fw-bold fs-5 text-white" data-link="eo">前台</a>
+        <a href="../co/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="co">主控</a>
+        <a href="Home.html" class="nav-link fw-bold fs-5 text-white active" data-link="so">出單</a>
+      </div>
+      <!-- 首頁 -->
+      <!-- 前台分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="eo" hidden>
+        <button class="nav-link text-white">單據統計</button>
+      </div>
+      <!-- 前台分頁 -->
+      <!-- 主控分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="co" hidden>
+        <a href="SystemSetting.html" class="nav-link text-white">系統設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">人員</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ClientsData.html">客戶資料</a></li>
+            <li><a class="dropdown-item" href="OutsourcedClients.html">外調組頭</a></li>
+          </ul>
+        </div>
+        <a href="ReduceMultipleSettings.html" class="nav-link text-white">降倍設定</a>
+        <a href="ReservedQuantitySetting.html" class="nav-link text-white">自留設定</a>
+        <a href="DoubleTailNumberSetting.html" class="nav-link text-white">台號設定</a>
+        <a href="ThreeTailNumberSetting.html" class="nav-link text-white">特尾設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">入牌查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="NumberSearch.html">牌支搜尋</a></li>
+            <li><a class="dropdown-item" href="BanNumberSetting.html">禁牌設定</a></li>
+          </ul>
+        </div>
+        <a href="MultipleNumbers.html" class="nav-link text-white">組合包牌</a>
+        <a href="LotteryResult.html" class="nav-link text-white">開獎結果</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SingleAccount.html">單期帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 主控分頁 -->
+      <!-- 出單分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="so" hidden>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">資料設定</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SystemSetting.html">系統參數設定</a></li>
+            <li><a class="dropdown-item" href="WebsiteSetting.html">網站資料設定</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">網站查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ReduceMultipleSearch.html">漲價降倍查詢</a></li>
+            <li><a class="dropdown-item" href="OpeningTimeSearch.html">開盤時間查詢</a></li>
+            <li><a class="dropdown-item" href="BasicPriceSearch.html">基本價格設定</a></li>
+            <li><a class="dropdown-item" href="PriceIncreaseSearch.html">各站漲價統計</a></li>
+            <li><a class="dropdown-item" href="BettingDetailsSearch.html">查詢撤銷注單</a></li>
+            <li><a class="dropdown-item" href="CurrentAccountSearch.html">本日帳務查詢</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">101遊戲切換</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">全部切換今彩539</a></li>
+            <li><a class="dropdown-item" href="">全部切換大樂透</a></li>
+            <li><a class="dropdown-item" href="">全部切換六合彩</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">已出注單</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="AllOrderDetails.html">全部出單明細</a></li>
+            <li><a class="dropdown-item" href="ManualOutsourcing.html">手動外調切出</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="HistoricalAccount.html">歷史帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 出單分頁 -->
+      <div class="nav align-items-center ms-auto">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input concaveShadow" type="checkbox" role="button" id="">
+          <label class="form-check-label fw-bold tx-16" for="" role="button"></label>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-bell-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">############</a></li>
+            <li><a class="dropdown-item" href="">############</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-gear-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">個人資料</a></li>
+            <li><a class="dropdown-item" href="">員工資料</a></li>
+            <li><a class="dropdown-item" href="">操作說明</a></li>
+            <li><a class="dropdown-item" href="">相關網站</a></li>
+            <li><a class="dropdown-item" href="">登出</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header -->
+  <!-- main -->
+  <div class="container-fluid py-4" id="main">
+    <div class="d-flex">
+      <div class="mx-auto pe-3">
+        <div class="vstack gap-3">
+          <div class="my-2"><span class="title">各站漲價統計</span></div>
+          <!-- tab -->
+          <div class="hstack gap-3 mb-2">
+            <label class="tab" role="button"><input type="radio" name="gameType" value="539" id="" hidden checked>539</label>
+            <label class="tab" role="button"><input type="radio" name="gameType" value="大樂透" id="" hidden>大樂透</label>
+            <label class="tab" role="button"><input type="radio" name="gameType" value="六合彩" id="" hidden>六合彩</label>
+            <label class="align-bottom ms-5" role="button"><input type="checkbox" name="" id="" class="concaveShadow align-middle me-2" role="button">只顯示漲價金額</label>
+            <button class="btn btnBlue convexShadow">更新漲價資料</button>
+          </div>
+          <!-- tab -->
+          <!-- 漲價表 -->
+          <div class="bgMain mainShadow p-3">
+            <div class="hstack">
+              <!-- 全車 -->
+              <div class="overflow-auto" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>全車</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 全車 -->
+              <!-- 二星 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>二星</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 二星 -->
+              <!-- 三星 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>三星</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 三星 -->
+              <!-- 四星 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>四星</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 四星 -->
+              <!-- 天一 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>天一</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 天一 -->
+              <!-- 天二 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>天二</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 天二 -->
+              <!-- 天三 -->
+              <div class="overflow-auto border-start borderColor" style="width: 230px; height: 650px">
+                <table class="w-100 text-nowrap text-center">
+                  <thead class="thBg thBorder position-sticky top-0">
+                    <tr>
+                      <th>天三</th>
+                      <th>價格</th>
+                      <th>名稱</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                    <tr>
+                      <th>01</th>
+                      <td>71.6</td>
+                      <td>老佛爺-德-0.1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 天三 -->
+            </div>
+          </div>
+          <!-- 漲價表 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main -->
+</body>
+</html>

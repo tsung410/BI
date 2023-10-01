@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../src/bootstrap.min.css">
+  <script src="../src/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="../src/style.css">
+
+  <style>
+    :has([name='dataType'][value='rmbn']:checked) ~ #rmbn,
+    :has([name='dataType'][value='mnp']:checked) ~ #mnp {
+      display: flex !important;
+    }
+
+    #bn :is(th,td) {
+      color: rgb(220,53,69);
+    }
+  </style>
+</head>
+<body>
+  <!-- header -->
+  <div class="container-fluid fixed-top px-5" id="header">
+    <div class="hstack gap-5 h-100">
+      <!-- 歷史紀錄 -->
+      <input type="date" name="" id="" class="concaveShadow">
+      <!-- 歷史紀錄 -->
+      <!-- 首頁 -->
+      <div class="nav gap-3 align-items-center mx-5">
+        <a href="../Index.html" class="nav-link fw-bold fs-5 text-white" data-link="eo">前台</a>
+        <a href="../co/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="co">主控</a>
+        <a href="Home.html" class="nav-link fw-bold fs-5 text-white active" data-link="so">出單</a>
+      </div>
+      <!-- 首頁 -->
+      <!-- 前台分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="eo" hidden>
+        <button class="nav-link text-white">單據統計</button>
+      </div>
+      <!-- 前台分頁 -->
+      <!-- 主控分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="co" hidden>
+        <a href="SystemSetting.html" class="nav-link text-white">系統設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">人員</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ClientsData.html">客戶資料</a></li>
+            <li><a class="dropdown-item" href="OutsourcedClients.html">外調組頭</a></li>
+          </ul>
+        </div>
+        <a href="ReduceMultipleSettings.html" class="nav-link text-white">降倍設定</a>
+        <a href="ReservedQuantitySetting.html" class="nav-link text-white">自留設定</a>
+        <a href="DoubleTailNumberSetting.html" class="nav-link text-white">台號設定</a>
+        <a href="ThreeTailNumberSetting.html" class="nav-link text-white">特尾設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">入牌查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="NumberSearch.html">牌支搜尋</a></li>
+            <li><a class="dropdown-item" href="BanNumberSetting.html">禁牌設定</a></li>
+          </ul>
+        </div>
+        <a href="MultipleNumbers.html" class="nav-link text-white">組合包牌</a>
+        <a href="LotteryResult.html" class="nav-link text-white">開獎結果</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SingleAccount.html">單期帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 主控分頁 -->
+      <!-- 出單分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="so" hidden>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">資料設定</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SystemSetting.html">系統參數設定</a></li>
+            <li><a class="dropdown-item" href="WebsiteSetting.html">網站資料設定</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">網站查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ReduceMultipleSearch.html">漲價降倍查詢</a></li>
+            <li><a class="dropdown-item" href="OpeningTimeSearch.html">開盤時間查詢</a></li>
+            <li><a class="dropdown-item" href="BasicPriceSearch.html">基本價格設定</a></li>
+            <li><a class="dropdown-item" href="PriceIncreaseSearch.html">各站漲價統計</a></li>
+            <li><a class="dropdown-item" href="BettingDetailsSearch.html">查詢撤銷注單</a></li>
+            <li><a class="dropdown-item" href="CurrentAccountSearch.html">本日帳務查詢</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">101遊戲切換</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">全部切換今彩539</a></li>
+            <li><a class="dropdown-item" href="">全部切換大樂透</a></li>
+            <li><a class="dropdown-item" href="">全部切換六合彩</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">已出注單</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="AllOrderDetails.html">全部出單明細</a></li>
+            <li><a class="dropdown-item" href="ManualOutsourcing.html">手動外調切出</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="HistoricalAccount.html">歷史帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 出單分頁 -->
+      <div class="nav align-items-center ms-auto">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input concaveShadow" type="checkbox" role="button" id="">
+          <label class="form-check-label fw-bold tx-16" for="" role="button"></label>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-bell-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">############</a></li>
+            <li><a class="dropdown-item" href="">############</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-gear-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">個人資料</a></li>
+            <li><a class="dropdown-item" href="">員工資料</a></li>
+            <li><a class="dropdown-item" href="">操作說明</a></li>
+            <li><a class="dropdown-item" href="">相關網站</a></li>
+            <li><a class="dropdown-item" href="">登出</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header -->
+  <!-- main -->
+  <div class="container-fluid py-4" id="main">
+    <div class="d-flex">
+      <div class="mx-auto pe-3">
+        <div class="vstack gap-3">
+          <div class="title">漲價降倍查詢</div>
+          <div class="d-flex gap-5 align-items-start">
+            <!-- 網站區 -->
+            <div class="vstack gap-3 flex-grow-0 align-items-start mt-2">
+              <div class="btn-group convexShadow">
+                <button class="btn btnBlue">登入</button>
+                <button class="btn btnBlue">登出</button>
+              </div>
+              <!-- 網站列表 -->
+              <div class="bgMain mainShadow p-3">
+                <div class="overflow-auto" style="width: 400px; height: 660px;">
+                  <table class="w-100 text-nowrap text-center">
+                    <thead class="thBg thBorder position-sticky top-0">
+                      <tr>
+                        <th><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></th>
+                        <th>編號</th>
+                        <th>會員帳號</th>
+                        <th>名稱</th>
+                        <th>登入</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>01</td>
+                        <td>z1565615</td>
+                        <td>老佛爺-德-0.1</td>
+                        <td><div class="finish"></div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- 網站列表 -->
+            </div>
+            <!-- 網站區 -->
+            <!-- 資料區 -->
+            <div class="vstack gap-3 flex-grow-0 align-items-start">
+              <div class="hstack justify-content-between mb-2">
+                <div class="hstack gap-4">
+                  <label class="tab" role="button"><input type="radio" name="gameType" value="539" id="" hidden checked>539</label>
+                  <label class="tab" role="button"><input type="radio" name="gameType" value="大樂透" id="" hidden>大樂透</label>
+                  <label class="tab" role="button"><input type="radio" name="gameType" value="六合彩" id="" hidden>六合彩</label>
+                </div>
+                <div class="hstack gap-4">
+                  <label class="tab" role="button"><input type="radio" name="dataType" value="rmbn" id="" hidden checked>降倍封牌</label>
+                  <label class="tab" role="button"><input type="radio" name="dataType" value="mnp" id="" hidden>包牌價位</label>
+                </div>
+              </div>
+              <div class="hstack gap-4 align-items-start" id="rmbn" hidden>
+                <!-- 封牌 -->
+                <div class="bgMain mainShadow p-3">
+                  <div class="overflow-auto" style="width: 100px; height: 660px;">
+                    <table class="w-100 text-nowrap" id="bn">
+                      <thead class="thBg thBorder position-sticky top-0">
+                        <tr>
+                          <th>封牌</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>01.02</th>
+                        </tr>
+                        <tr>
+                          <th>01.02.03</th>
+                        </tr>
+                        <tr>
+                          <th>10.20.30</th>
+                        </tr>
+                        <tr>
+                          <th>01.02.03.04</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 封牌 -->
+                <div class="vstack gap-4">
+                  <!-- 降倍表 -->
+                  <div class="bgMain mainShadow p-3">
+                    <div class="overflow-auto" style="width: 650px; height: 280px;">
+                      <table class="w-100 text-nowrap">
+                        <thead class="thBg thBorder position-sticky top-0">
+                          <tr>
+                            <th>時間</th>
+                            <th>類別</th>
+                            <th>組數</th>
+                            <th>彩金</th>
+                            <th>降倍內容</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>18：00</td>
+                            <td>二星</td>
+                            <td>46</td>
+                            <td>4800</td>
+                            <td>10x20x30x其他</td>
+                          </tr>
+                          <tr>
+                            <td>18：00</td>
+                            <td>三星</td>
+                            <td>166</td>
+                            <td>53000</td>
+                            <td>10x20x30x其他</td>
+                          </tr>
+                          <tr>
+                            <td>18：00</td>
+                            <td>四星</td>
+                            <td>331</td>
+                            <td>600000</td>
+                            <td>10x20x30x其他</td>
+                          </tr>
+                          <tr>
+                            <td>18：00</td>
+                            <td>四星</td>
+                            <td>2000</td>
+                            <td>750000</td>
+                            <td>01x02x03x04x05x06x07x08x09x10x11x12x13x14x15x16x17x18x19x20x21x22x23x24x25</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- 降倍表 -->
+                  <div class="hstack gap-3">
+                    <!-- 價格表 -->
+                    <div class="bgMain mainShadow p-3">
+                      <table class="w-100 text-nowrap">
+                        <thead class="thBg thBorder">
+                          <tr>
+                            <th>類別</th>
+                            <th>價格</th>
+                            <th>低押</th>
+                            <th>單限</th>
+                            <th>彩金</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>全車</th>
+                            <td>71.60</td>
+                            <td>100</td>
+                            <td>190000</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>二星</th>
+                            <td>71.70</td>
+                            <td>100</td>
+                            <td>10000</td>
+                            <td>5300</td>
+                          </tr>
+                          <tr>
+                            <th>三星</th>
+                            <td>62.70</td>
+                            <td>100</td>
+                            <td>3000</td>
+                            <td>57000</td>
+                          </tr>
+                          <tr>
+                            <th>四星</th>
+                            <td>48.50</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>800000</td>
+                          </tr>
+                          <tr>
+                            <th>台號</th>
+                            <td>75.00</td>
+                            <td>100</td>
+                            <td>10000</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>特尾</th>
+                            <td>60.00</td>
+                            <td>100</td>
+                            <td>1000</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>天一</th>
+                            <td>75.00</td>
+                            <td>100</td>
+                            <td>10000</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>天二</th>
+                            <td>75.00</td>
+                            <td>100</td>
+                            <td>10000</td>
+                            <td>24000</td>
+                          </tr>
+                          <tr>
+                            <th>天三</th>
+                            <td>75.00</td>
+                            <td>100</td>
+                            <td>3000</td>
+                            <td>180000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- 價格表 -->
+                    <!-- 台號倍數表 -->
+                    <div class="bgMain mainShadow p-3">
+                      <div class="overflow-auto" style="width: 120px; height: 330px;">
+                        <table class="w-100 text-nowrap">
+                          <thead class="thBg thBorder position-sticky top-0">
+                            <tr>
+                              <th>台號</th>
+                              <th>彩金</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>00</th>
+                              <td>4800</td>
+                            </tr>
+                            <tr>
+                              <th>01</th>
+                              <td>1300</td>
+                            </tr>
+                            <tr>
+                              <th>02</th>
+                              <td>1450</td>
+                            </tr>
+                            <tr>
+                              <th>03</th>
+                              <td>1650</td>
+                            </tr>
+                            <tr>
+                              <th>04</th>
+                              <td>1800</td>
+                            </tr>
+                            <tr>
+                              <th>05</th>
+                              <td>2000</td>
+                            </tr>
+                            <tr>
+                              <th>06</th>
+                              <td>2200</td>
+                            </tr>
+                            <tr>
+                              <th>07</th>
+                              <td>2450</td>
+                            </tr>
+                            <tr>
+                              <th>08</th>
+                              <td>2700</td>
+                            </tr>
+                            <tr>
+                              <th>09</th>
+                              <td>3000</td>
+                            </tr>
+                            <tr>
+                              <th>10</th>
+                              <td>3000</td>
+                            </tr>
+                            <tr>
+                              <th>10</th>
+                              <td>3000</td>
+                            </tr>
+                            <tr>
+                              <th>11</th>
+                              <td>3350</td>
+                            </tr>
+                            <tr>
+                              <th>12</th>
+                              <td>960</td>
+                            </tr>
+                            <tr>
+                              <th>13</th>
+                              <td>1060</td>
+                            </tr>
+                            <tr>
+                              <th>14</th>
+                              <td>1200</td>
+                            </tr>
+                            <tr>
+                              <th>15</th>
+                              <td>1300</td>
+                            </tr>
+                            <tr>
+                              <th>16</th>
+                              <td>1450</td>
+                            </tr>
+                            <tr>
+                              <th>17</th>
+                              <td>1600</td>
+                            </tr>
+                            <tr>
+                              <th>18</th>
+                              <td>1800</td>
+                            </tr>
+                            <tr>
+                              <th>19</th>
+                              <td>2000</td>
+                            </tr>
+                            <tr>
+                              <th>20</th>
+                              <td>2700</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- 台號倍數表 -->
+                    <!-- 特尾倍數表 -->
+                    <div class="bgMain mainShadow p-3">
+                      <div class="overflow-auto" style="width: 140px; height: 330px;">
+                        <table class="w-100 text-nowrap">
+                          <thead class="thBg thBorder position-sticky top-0">
+                            <tr>
+                              <th>特尾</th>
+                              <th>彩金</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>2線</th>
+                              <td>22000</td>
+                            </tr>
+                            <tr>
+                              <th>3線</th>
+                              <td>25000</td>
+                            </tr>
+                            <tr>
+                              <th>4線</th>
+                              <td>27000</td>
+                            </tr>
+                            <tr>
+                              <th>5線</th>
+                              <td>30000</td>
+                            </tr>
+                            <tr>
+                              <th>6線</th>
+                              <td>35000</td>
+                            </tr>
+                            <tr>
+                              <th>7線</th>
+                              <td>40000</td>
+                            </tr>
+                            <tr>
+                              <th>8線</th>
+                              <td>45000</td>
+                            </tr>
+                            <tr>
+                              <th>9線</th>
+                              <td>50000</td>
+                            </tr>
+                            <tr>
+                              <th>10線</th>
+                              <td>55000</td>
+                            </tr>
+                            <tr>
+                              <th>11線</th>
+                              <td>60000</td>
+                            </tr>
+                            <tr>
+                              <th>12線</th>
+                              <td>70000</td>
+                            </tr>
+                            <tr>
+                              <th>13線</th>
+                              <td>75000</td>
+                            </tr>
+                            <tr>
+                              <th>14線</th>
+                              <td>80000</td>
+                            </tr>
+                            <tr>
+                              <th>15線</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>16線</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>17線</th>
+                              <td>120000</td>
+                            </tr>
+                            <tr>
+                              <th>18線</th>
+                              <td>140000</td>
+                            </tr>
+                            <tr>
+                              <th>19線</th>
+                              <td>150000</td>
+                            </tr>
+                            <tr>
+                              <th>20線</th>
+                              <td>160000</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- 特尾倍數表 -->
+                  </div>
+                </div>
+              </div>
+              <div class="hstack gap-4 align-items-start" id="mnp" hidden>
+                <!-- 二星包牌價位表 -->
+                <div class="bgMain mainShadow p-3">
+                  <div class="overflow-auto" style="height: 660px;">
+                    <table class="w-100 text-nowrap">
+                      <thead class="thBg thBorder position-sticky top-0">
+                        <tr>
+                          <th>二星組合</th>
+                          <th>價格</th>
+                          <th>類別</th>
+                          <th>單限</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>10000</td>
+                        </tr>
+                        <tr>
+                          <td>46</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>200</td>
+                          <td>71.90</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>300</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>400</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>496</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>561</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>595</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>630</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 二星包牌價位表 -->
+                <!-- 三星包牌價位表 -->
+                <div class="bgMain mainShadow p-3">
+                  <div class="overflow-auto" style="height: 660px;">
+                    <table class="w-100 text-nowrap">
+                      <thead class="thBg thBorder position-sticky top-0">
+                        <tr>
+                          <th>三星組合</th>
+                          <th>價格</th>
+                          <th>類別</th>
+                          <th>單限</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>10000</td>
+                        </tr>
+                        <tr>
+                          <td>46</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>200</td>
+                          <td>71.90</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>300</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>400</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>496</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>561</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>595</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>630</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 三星包牌價位表 -->
+                <!-- 四星包牌價位表 -->
+                <div class="bgMain mainShadow p-3">
+                  <div class="overflow-auto" style="height: 660px;">
+                    <table class="w-100 text-nowrap">
+                      <thead class="thBg thBorder position-sticky top-0">
+                        <tr>
+                          <th>四星組合</th>
+                          <th>價格</th>
+                          <th>類別</th>
+                          <th>單限</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>10000</td>
+                        </tr>
+                        <tr>
+                          <td>46</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>200</td>
+                          <td>71.90</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>300</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>400</td>
+                          <td>71.80</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>496</td>
+                          <td>71.70</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>561</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>595</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                        <tr>
+                          <td>630</td>
+                          <td>71.65</td>
+                          <td>全部</td>
+                          <td>2000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 四星包牌價位表 -->
+              </div>
+            </div>
+            <!-- 資料區 -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main -->
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../src/bootstrap.min.css">
+  <script src="../src/bootstrap.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="../src/style.css">
+  <script src="../src/main.js" defer></script>
+
+  <style>
+    :has([name='gameType'][value='1']:checked) {
+      & label:has([name='gameType'][value='1']) {
+        background-color: rgb(235, 215, 195);
+        color: rgb(233, 106, 0);
+        box-shadow: 10px 10px 15px rgb(253, 126, 20),
+        -5px -5px 10px rgba(253, 126, 20, 0.7),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+        inset -10px -10px 15px rgb(255, 255, 255);
+      }
+      & ~ * {
+        & .title {
+          color: rgb(233, 106, 0);
+          box-shadow: -18px 0 0 rgb(253, 126, 20);
+        }
+        & :is(.gameSelectColor, .gameSelectColor:is(:hover, :active, :focus)) {
+          background-color: rgb(253, 126, 20) !important;
+        }
+      }
+    }
+
+
+    :has([name='gameType'][value='2']:checked) {
+      & label:has([name='gameType'][value='2']) {
+        background-color: rgb(195, 215, 235);
+        color: rgb(37, 78, 144);
+        box-shadow: 10px 10px 15px rgb(97, 138, 204),
+        -5px -5px 10px rgba(97, 138, 204, 0.7),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+        inset -10px -10px 15px rgb(255, 255, 255);
+      }
+      & ~ * {
+        & .title {
+          color: rgb(37, 78, 144);
+          box-shadow: -18px 0 0 rgb(57, 98, 164);
+        }
+        & :is(.gameSelectColor, .gameSelectColor:is(:hover, :active, :focus)) {
+          background-color: rgb(57, 98, 164) !important;
+        }
+      }
+    }
+
+    
+    :has([name='gameType'][value='3']:checked) {
+      & label:has([name='gameType'][value='3']) {
+        background-color: rgb(235, 195, 215);
+        color: rgb(215, 48, 65);
+        box-shadow: 10px 10px 15px rgb(235, 68, 85),
+        -5px -5px 10px rgba(235, 68, 85, 0.7),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+        inset -10px -10px 15px rgb(255, 255, 255);
+      }
+      & ~ * {
+        & .title {
+          color: rgb(215, 48, 65);
+          box-shadow: -18px 0 0 rgb(235, 68, 85);
+        }
+        & :is(.gameSelectColor, .gameSelectColor:is(:hover, :active, :focus)) {
+          background-color: rgb(235, 68, 85) !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- header -->
+  <div class="container-fluid fixed-top px-5" id="header">
+    <div class="hstack gap-5 h-100">
+      <!-- 歷史紀錄 -->
+      <input type="date" name="" id="" class="concaveShadow">
+      <!-- 歷史紀錄 -->
+      <!-- 首頁 -->
+      <div class="nav gap-3 align-items-center mx-5">
+        <a href="../Index.html" class="nav-link fw-bold fs-5 text-white" data-link="eo">前台</a>
+        <a href="Home.html" class="nav-link fw-bold fs-5 text-white active" data-link="co">主控</a>
+        <a href="../so/Home.html" class="nav-link fw-bold fs-5 text-white" data-link="so">出單</a>
+      </div>
+      <!-- 首頁 -->
+      <!-- 前台分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="eo" hidden>
+        <button class="nav-link text-white">單據統計</button>
+      </div>
+      <!-- 前台分頁 -->
+      <!-- 主控分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="co" hidden>
+        <a href="SystemSetting.html" class="nav-link text-white">系統設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">人員</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ClientsData.html">客戶資料</a></li>
+            <li><a class="dropdown-item" href="OutsourcedClients.html">外調組頭</a></li>
+          </ul>
+        </div>
+        <a href="ReduceMultipleSettings.html" class="nav-link text-white">降倍設定</a>
+        <a href="ReservedQuantitySetting.html" class="nav-link text-white">自留設定</a>
+        <a href="DoubleTailNumberSetting.html" class="nav-link text-white">台號設定</a>
+        <a href="ThreeTailNumberSetting.html" class="nav-link text-white">特尾設定</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">入牌查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="NumberSearch.html">牌支搜尋</a></li>
+            <li><a class="dropdown-item" href="BanNumberSetting.html">禁牌設定</a></li>
+          </ul>
+        </div>
+        <a href="MultipleNumbers.html" class="nav-link text-white">組合包牌</a>
+        <a href="LotteryResult.html" class="nav-link text-white">開獎結果</a>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SingleAccount.html">單期帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 主控分頁 -->
+      <!-- 出單分頁 -->
+      <div class="nav gap-3 align-items-center" data-link="so" hidden>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">資料設定</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="SystemSetting.html">系統參數設定</a></li>
+            <li><a class="dropdown-item" href="WebsiteSetting.html">網站資料設定</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">網站查詢</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ReduceMultipleSearch.html">漲價降倍查詢</a></li>
+            <li><a class="dropdown-item" href="OpeningTimeSearch.html">開盤時間查詢</a></li>
+            <li><a class="dropdown-item" href="BasicPriceSearch.html">基本價格設定</a></li>
+            <li><a class="dropdown-item" href="PriceIncreaseSearch.html">各站漲價統計</a></li>
+            <li><a class="dropdown-item" href="BettingDetailsSearch.html">查詢撤銷注單</a></li>
+            <li><a class="dropdown-item" href="CurrentAccountSearch.html">本日帳務查詢</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">101遊戲切換</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">全部切換今彩539</a></li>
+            <li><a class="dropdown-item" href="">全部切換大樂透</a></li>
+            <li><a class="dropdown-item" href="">全部切換六合彩</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">已出注單</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="AllOrderDetails.html">全部出單明細</a></li>
+            <li><a class="dropdown-item" href="ManualOutsourcing.html">手動外調切出</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link text-white dropdown-toggle" data-bs-toggle="dropdown">歷史帳務</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="HistoricalAccount.html">歷史帳務查詢</a></li>
+            <li><a class="dropdown-item" href="WeeklyAccount.html">一週帳務查詢</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 出單分頁 -->
+      <div class="nav align-items-center ms-auto">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input concaveShadow" type="checkbox" role="button" id="">
+          <label class="form-check-label fw-bold tx-16" for="" role="button"></label>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-bell-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">############</a></li>
+            <li><a class="dropdown-item" href="">############</a></li>
+          </ul>
+        </div>
+        <div>
+          <button class="nav-link" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-gear-fill d-block m-auto" viewBox="0 0 17 17">
+              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">個人資料</a></li>
+            <li><a class="dropdown-item" href="">員工資料</a></li>
+            <li><a class="dropdown-item" href="">操作說明</a></li>
+            <li><a class="dropdown-item" href="">相關網站</a></li>
+            <li><a class="dropdown-item" href="">登出</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header -->
+  <!-- main -->
+  <div class="container-fluid py-4" id="main">
+    <div class="d-flex">
+      <div class="mx-auto pe-3">
+        <div class="vstack gap-3">
+          <div class="d-flex gap-5 align-items-start">
+            <!-- 連線成員區 -->
+            <div class="vstack gap-3 flex-grow-0 me-4">
+              <!-- 遊戲切換 -->
+              <div class="hstack gap-4 mb-2">
+                <label class="tabCircle"><input type="radio" name="gameType" value="1" id="" hidden checked>539</label>
+                <label class="tabCircle"><input type="radio" name="gameType" value="2" id="" hidden>大樂</label>
+                <label class="tabCircle"><input type="radio" name="gameType" value="3" id="" hidden>六合</label>
+              </div>
+              <!-- 遊戲切換 -->
+              <div class="my-2"><span class="title ">目前連線成員</span></div>
+              <div class="bgMain mainShadow p-3">
+                <div class="overflow-auto" style="width: 350px; height: 495px;">
+                  <table class="w-100 text-nowrap text-center">
+                    <thead class="thBg thBorder isolation position-sticky top-0">
+                      <tr>
+                        <th>編號</th>
+                        <th>成員名稱</th>
+                        <th>上線時間</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                      <tr>
+                        <td>01</td>
+                        <td>阿德</td>
+                        <td>03：22：42</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- 連線成員區 -->
+            <!-- 號碼統計區 -->
+            <div class="vstack gap-3 flex-grow-0 me-4" style="margin-top: 26px;">
+              <div class="my-2"><span class="title">號碼統計</span></div>
+              <!-- 查詢按鈕 -->
+              <div class="btn-group w-100 convexShadow">
+                <button class="btn btnBlue gameSelectColor">全車</button>
+                <button class="btn btnBlue gameSelectColor">二星</button>
+                <button class="btn btnBlue gameSelectColor">三星</button>
+                <button class="btn btnBlue gameSelectColor">四星</button>
+                <button class="btn btnBlue gameSelectColor">台號</button>
+                <button class="btn btnBlue gameSelectColor">特尾</button>
+                <button class="btn btnBlue gameSelectColor">天一</button>
+                <button class="btn btnBlue gameSelectColor">天二</button>
+                <button class="btn btnBlue gameSelectColor">天三</button>
+              </div>
+              <!-- 查詢按鈕 -->
+              <!-- 統計表 -->
+              <div class="bgMain mainShadow p-3">
+                <div class="overflow-auto" style="width: 460px; height: 495px;">
+                  <table class="w-100 text-nowrap text-center">
+                    <thead class="thBg thBorder isolation position-sticky top-0">
+                      <tr>
+                        <th>四星</th>
+                        <th>全部數量</th>
+                        <th>未出數量</th>
+                        <th>已出數量</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                      <tr>
+                        <th>01.02.03.04</th>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                        <td>10000.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- 統計表 -->
+              <!-- 總計支數 -->
+              <div class="hstack justify-content-between px-2 py-3">
+                <div class="hstack gap-4">
+                  <div class="fw-bold">自留： 1000</div>
+                  <div class="fw-bold">未出： 1000</div>
+                  <div class="fw-bold">已出： 1000</div>
+                </div>
+                <div>筆數： 1/415</div>
+              </div>
+              <!-- 總計支數 -->
+              <label class="text-danger fw-bold align-bottom align-self-start px-2" role="button">
+                <input type="checkbox" class="concaveShadow align-middle me-2" role="button">禁止入牌
+              </label>
+            </div>
+            <!-- 號碼統計區 -->
+            <!-- 外調射出區 -->
+            <div class="vstack gap-3 flex-grow-0" style="margin-top: 26px;">
+              <div class="my-2"><span class="title gameSelectColorTitle">外調射出</span></div>
+              <!-- 外調/射出按鈕 -->
+              <div class="hstack gap-3">
+                <div class="btn-group convexShadow">
+                  <button class="btn btnBlue gameSelectColor">匯出資料</button>
+                  <!-- 下拉按鈕 -->
+                  <div class="btn-group">
+                    <button class="btn btnBlue dropdown-toggle opacity-75 gameSelectColor" data-bs-toggle="dropdown"></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">匯出全車</a></li>
+                      <li><a class="dropdown-item" href="#">匯出二星</a></li>
+                      <li><a class="dropdown-item" href="#">匯出三星</a></li>
+                      <li><a class="dropdown-item" href="#">匯出四星</a></li>
+                      <li><a class="dropdown-item" href="#">匯出台號</a></li>
+                      <li><a class="dropdown-item" href="#">匯出特尾</a></li>
+                      <li><a class="dropdown-item" href="#">匯出天一</a></li>
+                      <li><a class="dropdown-item" href="#">匯出天二</a></li>
+                      <li><a class="dropdown-item" href="#">匯出天三</a></li>
+                    </ul>
+                  </div>
+                  <!-- 下拉按鈕 -->
+                </div>
+                <button class="btn btnBlue w-100 convexShadow gameSelectColor">立即出單</button>
+                <div class="btn-group convexShadow">
+                  <!-- 查詢明細 dialog -->
+                  <button class="btn btnGray" data-dialog-open="#queryDetails">查詢明細</button>
+                  <dialog id="queryDetails">
+                    <div class="vstack gap-4">
+                      <div class="hstack justify-content-between">
+                        <div class="title">查詢明細</div>
+                        <button type="button" class="btn-close" aria-label="Close" data-dialog-close="#queryDetails"></button>
+                      </div>
+                      <div class="overflow-auto" style="width: 200px; height: 500px;">
+                        <table class="w-100 text-nowrap">
+                          <thead class="thBg thBorder position-sticky top-0">
+                            <tr>
+                              <th>四星號碼</th>
+                              <th>數量</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                            <tr>
+                              <th>01.02.03.04</th>
+                              <td>100000</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </dialog>
+                  <!-- 查詢明細 dialog -->
+                  <!-- 下拉按鈕 -->
+                  <div class="btn-group">
+                    <button class="btn btnGray dropdown-toggle" data-bs-toggle="dropdown">列印外調 </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">列印全車</a></li>
+                      <li><a class="dropdown-item" href="#">列印二星</a></li>
+                      <li><a class="dropdown-item" href="#">列印三星</a></li>
+                      <li><a class="dropdown-item" href="#">列印四星</a></li>
+                      <li><a class="dropdown-item" href="#">列印台號</a></li>
+                      <li><a class="dropdown-item" href="#">列印特尾</a></li>
+                      <li><a class="dropdown-item" href="#">列印天一</a></li>
+                      <li><a class="dropdown-item" href="#">列印天二</a></li>
+                      <li><a class="dropdown-item" href="#">列印天三</a></li>
+                    </ul>
+                  </div>
+                  <!-- 下拉按鈕 -->
+                </div>
+              </div>
+              <!-- 外調/射出按鈕 -->
+              <!-- 射出表 -->
+              <div class="bgMain mainShadow p-3">
+                <div class="overflow-auto" style="width: 400px; height: 495px;">
+                  <table class="w-100 text-nowrap text-center">
+                    <thead class="thBg thBorder isolation position-sticky top-0">
+                      <tr>
+                        <th><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></th>
+                        <th>類別</th>
+                        <th>射出數量</th>
+                        <th>外調組頭</th>
+                        <th>射出</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" name="" id="" class="concaveShadow align-middle" role="button"></td>
+                        <td>全車</td>
+                        <td>10000.00</td>
+                        <td>
+                          <select name="" id="" class="form-select concaveShadow mx-auto" role="button" style="width: 120px;">
+                            <option value="">富立不佔</option>
+                          </select>
+                        </td>
+                        <td>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle d-block mx-auto" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                          </svg>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- 射出表 -->
+              <div class="hstack gap-4 justify-content-start p-2">
+                <label class="fw-bold align-bottom" role="button">
+                  <input type="checkbox" class="concaveShadow align-middle me-2" name="as" role="button">自動匯出
+                </label>
+                <div class="vr"></div>
+                <div>每隔<input type="number" class="concaveShadow mx-3" min="0" value="0" data-check="as" style="width: 65px;">分鐘，自動匯出</div>
+              </div>
+            </div>
+            <!-- 外調射出區 -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main -->
+  <script>
+    // 自動匯出勾選鎖定輸入
+    const asCheckbox = document.querySelector('input[name="as"]');
+    asCheckbox.addEventListener('click',() => {
+      if (asCheckbox.checked) {
+        document.querySelector('input[data-check="as"]').disabled = true;
+      } else {
+        document.querySelector('input[data-check="as"]').disabled = false;
+      }
+    })
+    // 自動匯出勾選鎖定輸入
+  </script>
+</body>
+</html>
