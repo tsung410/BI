@@ -11,8 +11,12 @@
     height: 10px;
   }
 
-  &::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb:vertical {
     background-image: linear-gradient(180deg, transparent, rgb(215, 215, 215), transparent);
+  }
+
+  &::-webkit-scrollbar-thumb:horizontal {
+    background-image: linear-gradient(90deg, transparent, rgb(215, 215, 215), transparent);
   }
 }
 
